@@ -1,8 +1,6 @@
 import { Args, ID, Query, Resolver } from "@nestjs/graphql";
 import { User } from "./models/user.model";
 import { UsersService } from "./users.service";
-import * as protos from "../protos/user";
-import * as grpc from "@grpc/grpc-js";
 
 @Resolver((of) => User)
 export class UsersResolver {
