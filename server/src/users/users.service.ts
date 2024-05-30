@@ -10,8 +10,8 @@ export class UsersService {
 
   constructor() {
     this._client = new protos.UserServiceClient(
+      // TODO => setup NEST env
       "dns:///localhost:5000",
-      // "grpc://localhost:5000",
       grpc.ChannelCredentials.createInsecure(),
     );
   }
@@ -19,16 +19,9 @@ export class UsersService {
   userLoader() {
     if (!this._userLoader) {
       this._userLoader = new DataLoader((ids: readonly string[]) => {
-        console.log("🚀 ~ ids:", ids);
         const req = protos.GetUsersRequest.fromJSON({ ids });
-        const encodedReq = protos.GetUsersRequest.encode(req);
-        console.log("🚀 ~ encodedReq:", encodedReq);
-        console.log("🚀 ~ req:", req);
         return new Promise((resolve, reject) => {
-          console.log("🚀 ~ this._client?.getUsers:", this._client?.getUsers);
           this._client?.getUsers(req, (err, data) => {
-            console.log("🚀 ~ data:", data);
-            console.log("🚀 ~ err:", err);
             if (err) {
               return reject(err);
             }
