@@ -1,12 +1,12 @@
 import { useFonts } from "expo-font";
-import { Stack } from "expo-router";
+import { Slot } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 import "react-native-reanimated";
 import { ThemeProvider } from "styled-components/native";
 import { theme } from "../providers/theme";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import { SafeAreaView } from "react-native";
+import { enableLayoutAnimations } from "react-native-reanimated";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -26,13 +26,13 @@ export default function RootLayout() {
     return null;
   }
 
+  // fix for bad reanimated code causing android issues
+  enableLayoutAnimations(false);
+
   return (
     <ThemeProvider theme={theme}>
       <SafeAreaProvider>
-        <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="+not-found" />
-        </Stack>
+        <Slot />
       </SafeAreaProvider>
     </ThemeProvider>
   );
