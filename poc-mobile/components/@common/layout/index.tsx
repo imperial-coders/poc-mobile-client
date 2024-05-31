@@ -173,7 +173,7 @@ export const ScreenContainer = styled(View)<{
   paddingTop?: number;
 }>`
   min-height: ${(props) => props.minHeight}px;
-  background-color: ${(props) => props.theme.colors.background};
+  background-color: ${(props) => props.theme.colors.base};
   padding-bottom: ${(props) => props.paddingBottom ?? 0}px;
   padding-top: ${(props) => props.paddingTop ?? 0}px;
   flex: 1;

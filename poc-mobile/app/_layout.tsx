@@ -8,6 +8,7 @@ import { theme } from "../providers/theme";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { enableLayoutAnimations } from "react-native-reanimated";
 import { SessionProvider } from "@/providers/auth/context";
+import { ApolloProvider } from "@/providers/apollo";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -32,11 +33,13 @@ export default function RootLayout() {
 
   return (
     <SessionProvider>
-      <ThemeProvider theme={theme}>
-        <SafeAreaProvider>
-          <Slot />
-        </SafeAreaProvider>
-      </ThemeProvider>
+      <ApolloProvider>
+        <ThemeProvider theme={theme}>
+          <SafeAreaProvider>
+            <Slot />
+          </SafeAreaProvider>
+        </ThemeProvider>
+      </ApolloProvider>
     </SessionProvider>
   );
 }
