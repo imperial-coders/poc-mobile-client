@@ -11,6 +11,7 @@ import { StatusBar } from "expo-status-bar";
 import { Text } from "../../../components/@common/typography/text";
 import { spacing16 } from "../../../components/@common/spacing";
 import { PrimaryButton } from "@/components/@common/buttons/primary";
+import { useSession } from "@/providers/auth/context";
 
 const HeroContent = styled(View)`
   height: 100%;
@@ -24,6 +25,7 @@ const HeroContent = styled(View)`
 
 export default function WelcomeScreen() {
   const router = useRouter();
+  const { signIn } = useSession();
 
   const { bottom } = useSafeAreaInsets();
 
@@ -47,8 +49,8 @@ export default function WelcomeScreen() {
             <BigTitle>POC</BigTitle>
             <PrimaryButton
               onPress={() => {
-                // no op
-                console.log("pressed!");
+                signIn();
+                router.replace("/");
               }}
             >
               Login

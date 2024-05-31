@@ -1,5 +1,5 @@
 import { Text } from "@/components/@common/typography/text";
-import { Link, Stack } from "expo-router";
+import { Link, Stack, usePathname } from "expo-router";
 import { StyleSheet, View } from "react-native";
 import styled from "styled-components/native";
 

@@ -2,16 +2,15 @@ import { Text } from "@/components/@common/typography/text";
 import { useSession } from "@/providers/auth/context";
 import { Redirect, Stack } from "expo-router";
 
-export default function UnauthenticatedLayout() {
+export default function AppLayout() {
   const { session, isLoading } = useSession();
 
-  // You can keep the splash screen open, or render a loading screen like we do here.
   if (isLoading) {
     return <Text>Loading...</Text>;
   }
 
-  if (session) {
-    return <Redirect href="/" />;
+  if (!session) {
+    return <Redirect href="/welcome" />;
   }
 
   // This layout can be deferred because it's not the root layout.
