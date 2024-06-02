@@ -33,12 +33,27 @@ export type User = {
   __typename?: 'User';
   createdAt: Scalars['Date']['output'];
   email: Scalars['String']['output'];
+  financialSummary: UserFinancialSummary;
   firstName: Scalars['String']['output'];
   id: Scalars['ID']['output'];
   lastName: Scalars['String']['output'];
   phoneNumber?: Maybe<Scalars['String']['output']>;
   updatedAt: Scalars['Date']['output'];
 };
+
+/** UserFinancialSummary */
+export type UserFinancialSummary = {
+  __typename?: 'UserFinancialSummary';
+  amountInCentsSpentLastThirtyDays: Scalars['Int']['output'];
+  id: Scalars['ID']['output'];
+};
+
+export type GetUserFinancialSummaryDataQueryVariables = Exact<{
+  userId: Scalars['ID']['input'];
+}>;
+
+
+export type GetUserFinancialSummaryDataQuery = { __typename?: 'Query', getUser: { __typename?: 'User', id: string, financialSummary: { __typename?: 'UserFinancialSummary', id: string, amountInCentsSpentLastThirtyDays: number } } };
 
 export type GetMeForHomeScreenQueryVariables = Exact<{
   userId: Scalars['ID']['input'];
@@ -48,4 +63,5 @@ export type GetMeForHomeScreenQueryVariables = Exact<{
 export type GetMeForHomeScreenQuery = { __typename?: 'Query', getUser: { __typename?: 'User', id: string, firstName: string, lastName: string, email: string, phoneNumber?: string | null } };
 
 
+export const GetUserFinancialSummaryDataDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetUserFinancialSummaryData"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"userId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getUser"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"userId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"financialSummary"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"amountInCentsSpentLastThirtyDays"}}]}}]}}]}}]} as unknown as DocumentNode<GetUserFinancialSummaryDataQuery, GetUserFinancialSummaryDataQueryVariables>;
 export const GetMeForHomeScreenDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetMeForHomeScreen"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"userId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getUser"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"userId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"phoneNumber"}}]}}]}}]} as unknown as DocumentNode<GetMeForHomeScreenQuery, GetMeForHomeScreenQueryVariables>;
