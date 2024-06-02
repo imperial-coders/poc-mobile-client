@@ -1,4 +1,5 @@
 import { Field, ID, ObjectType } from "@nestjs/graphql";
+import { UserFinancialSummary } from "./user-financial-summary.model";
 
 @ObjectType({ description: "User" })
 export class User {
@@ -16,6 +17,9 @@ export class User {
 
   @Field({ nullable: true })
   phoneNumber?: string;
+
+  @Field((type) => UserFinancialSummary)
+  financialSummary: UserFinancialSummary;
 
   @Field()
   createdAt: Date;

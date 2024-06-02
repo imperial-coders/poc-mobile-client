@@ -15,9 +15,16 @@ type Query {
 type User {
   createdAt: Date!
   email: String!
+  financialSummary: UserFinancialSummary!
   firstName: String!
   id: ID!
   lastName: String!
   phoneNumber: String
   updatedAt: Date!
+}
+
+"""UserFinancialSummary"""
+type UserFinancialSummary {
+  amountInCentsSpentLastThirtyDays: Int!
+  id: ID!
 }
